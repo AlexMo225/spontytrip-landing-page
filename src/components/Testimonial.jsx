@@ -97,7 +97,11 @@ const Testimonial = () => {
     }, [current]);
 
     return (
-        <section id="temoignages" data-section="temoignages" className="bg-white py-10 md:py-16">
+        <section
+            id="temoignages"
+            data-section="temoignages"
+            className="bg-white py-10 md:py-16"
+        >
             <div className="container-section">
                 <AnimatedSection delay={0.3}>
                     <motion.h2

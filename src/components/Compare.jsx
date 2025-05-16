@@ -158,7 +158,11 @@ const Compare = () => {
     ];
 
     return (
-        <section id="comparaison" data-section="comparaison" className="bg-tertiary py-16">
+        <section
+            id="comparaison"
+            data-section="comparaison"
+            className="bg-tertiary py-16"
+        >
             <div className="container-section">
                 <AnimatedSection delay={0.2}>
                     <motion.h2
