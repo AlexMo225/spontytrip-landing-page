@@ -113,7 +113,7 @@ const CTA = () => {
                         transition={{ duration: 0.4, delay: 0.7 }}
                     >
                         <motion.a
-                            href="#"
+                            href="https://github.com/AlexMo225"
                             className="text-white hover:text-secondary text-lg"
                             whileHover={{
                                 scale: 1.2,
@@ -124,7 +124,7 @@ const CTA = () => {
                             <FaGithub />
                         </motion.a>
                         <motion.a
-                            href="#"
+                            href="https://www.linkedin.com/in/alex-morel-sahie-1a73911b4/"
                             className="text-white hover:text-secondary text-lg"
                             whileHover={{
                                 scale: 1.2,
@@ -135,7 +135,7 @@ const CTA = () => {
                             <FaLinkedin />
                         </motion.a>
                         <motion.a
-                            href="#"
+                            href="mailto:alexmorel1999@gmail.com"
                             className="text-white hover:text-secondary text-lg"
                             whileHover={{
                                 scale: 1.2,
