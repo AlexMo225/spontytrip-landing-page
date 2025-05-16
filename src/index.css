@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap");
+/* Suppression de l'import Google Fonts car nous utilisons maintenant Fontshare */
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"); */
 
 @tailwind base;
 @tailwind components;
@@ -27,7 +28,7 @@ html {
     h4,
     h5,
     h6 {
-        @apply font-bold;
+        @apply font-display font-bold;
     }
 
     /* Améliorer la lisibilité sur mobile */
@@ -49,11 +50,11 @@ html {
 
 @layer components {
     .btn-primary {
-        @apply bg-secondary text-white font-medium py-2 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-200;
+        @apply bg-secondary text-white font-medium py-2 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-200 font-display;
     }
 
     .btn-secondary {
-        @apply border border-primary text-primary font-medium py-2 px-6 rounded-full hover:bg-tertiary transition-all duration-200;
+        @apply border border-primary text-primary font-medium py-2 px-6 rounded-full hover:bg-tertiary transition-all duration-200 font-display;
     }
 
     .container-section {

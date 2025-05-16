@@ -104,6 +104,44 @@ const CompareRow = ({
     );
 };
 
+// Nouveau composant pour l'affichage mobile
+const MobileCompareRow = ({ feature, apps, index }) => {
+    return (
+        <motion.div
+            className="mb-4 bg-white rounded-lg shadow-sm p-3"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+                duration: 0.4,
+                delay: 0.1 * index,
+                ease: "easeOut",
+            }}
+        >
+            <h3 className="font-medium text-gray-800 mb-2 border-b pb-2">
+                {feature}
+            </h3>
+            <div className="grid grid-cols-2 gap-2">
+                {apps.map((app, i) => (
+                    <div
+                        key={i}
+                        className={`flex items-center ${
+                            app.available ? "text-secondary" : "text-gray-400"
+                        }`}
+                    >
+                        {app.available ? (
+                            <FaCheck className="mr-2 flex-shrink-0" />
+                        ) : (
+                            <FaTimes className="mr-2 flex-shrink-0 text-red-400" />
+                        )}
+                        <span className="text-sm">{app.name}</span>
+                    </div>
+                ))}
+            </div>
+        </motion.div>
+    );
+};
+
 const Compare = () => {
     const features = [
         {
@@ -176,8 +214,9 @@ const Compare = () => {
                     </motion.h2>
                 </AnimatedSection>
 
+                {/* Version desktop du tableau de comparaison */}
                 <motion.div
-                    className="bg-white rounded-xl shadow-lg p-3 sm:p-4 md:p-6 overflow-x-auto"
+                    className="hidden sm:block bg-white rounded-xl shadow-lg p-3 sm:p-4 md:p-6 overflow-x-auto"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -211,7 +250,7 @@ const Compare = () => {
                         </div>
                     </motion.div>
 
-                    <div className="min-w-fit">
+                    <div>
                         {features.map((item, index) => (
                             <CompareRow
                                 key={index}
@@ -224,20 +263,42 @@ const Compare = () => {
                             />
                         ))}
                     </div>
+                </motion.div>
 
-                    <motion.div
-                        className="mt-6 pt-4 text-gray-600 text-center"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.8 }}
-                    >
-                        <p className="font-medium text-sm md:text-base">
-                            SpontyTrip combine toutes les fonctionnalités
-                            essentielles en une seule application facile à
-                            utiliser.
-                        </p>
-                    </motion.div>
+                {/* Version mobile du tableau de comparaison */}
+                <div className="sm:hidden">
+                    {features.map((item, index) => (
+                        <MobileCompareRow
+                            key={index}
+                            feature={item.feature}
+                            apps={[
+                                {
+                                    name: "SpontyTrip",
+                                    available: item.spontytrip,
+                                },
+                                { name: "WhatsApp", available: item.whatsapp },
+                                { name: "Trello", available: item.trello },
+                                {
+                                    name: "Splitwise",
+                                    available: item.splitwise,
+                                },
+                            ]}
+                            index={index}
+                        />
+                    ))}
+                </div>
+
+                <motion.div
+                    className="mt-6 pt-4 text-gray-600 text-center"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                    <p className="font-medium text-sm md:text-base">
+                        SpontyTrip combine toutes les fonctionnalités
+                        essentielles en une seule application facile à utiliser.
+                    </p>
                 </motion.div>
             </div>
         </section>

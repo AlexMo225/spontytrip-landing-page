@@ -10,7 +10,8 @@ module.exports = {
                 neutral: "#E5E9F0",
             },
             fontFamily: {
-                sans: ["Inter", "Poppins", "ui-sans-serif", "system-ui"],
+                sans: ["Satoshi", "ui-sans-serif", "system-ui"],
+                display: ["Clash Display", "ui-sans-serif", "system-ui"],
             },
         },
     },

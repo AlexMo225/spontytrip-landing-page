@@ -149,30 +149,91 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
-                    <div className="text-2xl font-bold">
-                        <span className="text-primary">Sponty</span>
-                        <span className="text-secondary">Trip</span>
+                    <div className="flex items-center">
+                        <motion.div
+                            className="text-2xl md:text-2xl lg:text-3xl font-display font-bold tracking-tight leading-none cursor-pointer flex items-center"
+                            whileHover={{ scale: 1.03 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                        >
+                            {/* Élément iconographique */}
+                            <div className="hidden sm:flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-primary to-secondary mr-2">
+                                <motion.div
+                                    className="w-3 h-3 bg-white rounded-full"
+                                    whileHover={{ scale: 1.2 }}
+                                    animate={{
+                                        y: [0, -2, 0],
+                                        opacity: [0.8, 1, 0.8],
+                                    }}
+                                    transition={{
+                                        duration: 1.5,
+                                        repeat: Infinity,
+                                        repeatType: "reverse",
+                                    }}
+                                />
+                            </div>
+
+                            {/* Texte du logo */}
+                            <div className="flex flex-col relative">
+                                <span className="text-primary leading-none">
+                                    Sponty
+                                </span>
+                                <span className="text-secondary leading-none relative">
+                                    Trip
+                                    <motion.span
+                                        className="absolute -bottom-1 right-0 bg-primary h-1.5 rounded-full"
+                                        initial={{ width: 0 }}
+                                        animate={{ width: 16 }}
+                                        transition={{
+                                            duration: 0.6,
+                                            delay: 0.3,
+                                        }}
+                                        whileHover={{ width: 24 }}
+                                    />
+                                </span>
+                            </div>
+                        </motion.div>
                     </div>
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex space-x-6">
-                        {navLinks.map((link) => (
-                            <a
+                        {navLinks.map((link, index) => (
+                            <motion.a
                                 key={link.name}
                                 href={`#${link.id}`}
-                                className="text-gray-700 hover:text-primary transition-colors"
+                                className="text-gray-700 hover:text-primary transition-colors relative px-1"
                                 onClick={(e) => scrollToSection(link.id, e)}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 * index + 0.3 }}
+                                whileHover={{ scale: 1.05 }}
                             >
                                 {link.name}
-                            </a>
+                                <motion.span
+                                    className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary rounded-full"
+                                    initial={{ width: 0 }}
+                                    whileHover={{ width: "100%" }}
+                                    transition={{ duration: 0.2 }}
+                                />
+                            </motion.a>
                         ))}
                     </div>
 
                     {/* CTA Button - Desktop */}
                     <div className="hidden md:block">
-                        <button className="btn-primary text-sm py-1.5 px-6">
+                        <motion.button
+                            className="btn-primary text-sm py-1.5 px-6"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.6, type: "spring" }}
+                            whileHover={{
+                                scale: 1.05,
+                                boxShadow:
+                                    "0 10px 15px -3px rgba(126, 217, 87, 0.3)",
+                            }}
+                            whileTap={{ scale: 0.98 }}
+                        >
                             Essayer maintenant
-                        </button>
+                        </motion.button>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -209,6 +270,69 @@ const Navbar = () => {
                                 transition={{ duration: 0.3 }}
                             >
                                 <div className="flex flex-col p-4 space-y-3">
+                                    {/* Logo affiché uniquement sur mobile quand le menu est ouvert */}
+                                    <motion.div
+                                        className="mb-4 flex flex-col items-center"
+                                        initial={{ opacity: 0, y: -20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.2 }}
+                                    >
+                                        <div className="flex items-center mb-2">
+                                            <motion.div
+                                                className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary mr-3"
+                                                whileHover={{ scale: 1.1 }}
+                                                animate={{
+                                                    scale: [1, 1.05, 1],
+                                                }}
+                                                transition={{
+                                                    duration: 2,
+                                                    repeat: Infinity,
+                                                    repeatType: "reverse",
+                                                }}
+                                            >
+                                                <motion.div
+                                                    className="w-4 h-4 bg-white rounded-full"
+                                                    animate={{
+                                                        y: [0, -2, 0],
+                                                        opacity: [0.8, 1, 0.8],
+                                                    }}
+                                                    transition={{
+                                                        duration: 1.5,
+                                                        repeat: Infinity,
+                                                        repeatType: "reverse",
+                                                    }}
+                                                />
+                                            </motion.div>
+
+                                            <div className="text-2xl font-display font-bold">
+                                                <span className="text-primary">
+                                                    Sponty
+                                                </span>
+                                                <span className="text-secondary relative">
+                                                    Trip
+                                                    <motion.span
+                                                        className="absolute -bottom-1 right-0 bg-primary h-1.5 rounded-full"
+                                                        initial={{ width: 0 }}
+                                                        animate={{ width: 16 }}
+                                                        transition={{
+                                                            duration: 0.6,
+                                                            delay: 0.3,
+                                                        }}
+                                                    />
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <motion.div
+                                            className="text-sm text-gray-500 max-w-[200px] text-center"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ delay: 0.4 }}
+                                        >
+                                            Organisez vos week-ends entre amis
+                                        </motion.div>
+                                    </motion.div>
+
                                     {navLinks.map((link) => (
                                         <a
                                             key={link.name}
@@ -222,15 +346,23 @@ const Navbar = () => {
                                             {link.name}
                                         </a>
                                     ))}
-                                    <button
+                                    <motion.button
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             closeMenu();
                                         }}
                                         className="btn-primary text-base py-3 px-6 w-full mt-2 active:bg-green-500 transition-colors"
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
                                     >
-                                        Essayer maintenant
-                                    </button>
+                                        <motion.span
+                                            initial={{ opacity: 0, y: 5 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.5 }}
+                                        >
+                                            Essayer maintenant
+                                        </motion.span>
+                                    </motion.button>
                                 </div>
                             </motion.div>
                         </>
