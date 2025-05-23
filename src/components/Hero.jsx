@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import PhoneMockup from "../assets/phone-mockup";
+import AppStoreBadge from "../assets/Download_on_the_App_Store_Badge_FR_RGB_blk_100517.svg";
+import GooglePlayBadge from "../assets/GetItOnGooglePlay_Badge_Web_color_French-CA.png";
 
 const Hero = () => {
     return (
@@ -69,6 +71,39 @@ const Hero = () => {
                         >
                             Découvrir l'app
                         </motion.button>
+                    </motion.div>
+
+                    {/* Boutons de téléchargement App Store et Google Play */}
+                    <motion.div
+                        className="flex flex-wrap gap-4 mt-6"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 1.0 }}
+                    >
+                        <motion.a
+                            href="#"
+                            className="h-[40px] md:h-[50px]"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <img
+                                src={AppStoreBadge}
+                                alt="Télécharger sur l'App Store"
+                                className="h-full w-auto"
+                            />
+                        </motion.a>
+                        <motion.a
+                            href="#"
+                            className="h-[40px] md:h-[50px]"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <img
+                                src={GooglePlayBadge}
+                                alt="Disponible sur Google Play"
+                                className="h-full w-auto"
+                            />
+                        </motion.a>
                     </motion.div>
                 </motion.div>
                 <motion.div
